@@ -4,6 +4,8 @@ import ReplyIcon from '@mui/icons-material/Reply';
 import { useState } from 'react';
 import { Modal } from '@mui/material';
 import Reply from './Reply';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 function Tweet() {
   const [ Isopen,setIsOpen ]=useState(false)
   
@@ -39,7 +41,7 @@ function Tweet() {
       </button>
     </div>
   </div>
-  <button className = " absolute top-0 right-4 " >Delete</button>
+  <button className = " absolute top-0 right-4 " ><DeleteIcon/></button>
     </div>
   )
 }

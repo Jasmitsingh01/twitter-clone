@@ -2,7 +2,7 @@ interface InputboxProps {
   value?: string;
   onChange: () => void;
   classname: string;
-  label: string;
+  label?: string;
   placeholder: string;
   type: string;
   error?: string;
@@ -18,7 +18,7 @@ function InputBox({
 }: InputboxProps) {
   return (
     <div >
-      <label>{label}</label>
+      <label className=" mb-2">{label}</label>
       <input
         type={type}
         value={value}

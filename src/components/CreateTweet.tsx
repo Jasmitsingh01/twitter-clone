@@ -20,15 +20,16 @@ function CreateTweet({close}:{
   }
   const previewImage=(file:any)=>{
 
-    
+    const files=file.target?.files[0]
     const reader=new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(files);
     reader.onload=()=>{
       setImageSrc(reader.result )
     }
     reader.onerror=()=>{
       setImageSrc(reader.error)
     }
+   
   }
   return (
     <form onSubmit={handleSubmit((data)=>onSubmit(data))} className=" w-1/2 bg-white p-3 ">
@@ -53,11 +54,11 @@ function CreateTweet({close}:{
    }}
    control={control}
    render={({field:{}})=>
-   <input {...register('image')} type="file"  placeholder={'Image'} className=" p-3 rounded mb-4"  onChange={(e)=>previewImage(e?.target?.files[0]|| undefined)} />
+   <input {...register('image')} type="file"  placeholder={'Image'} className=" p-3 rounded mb-4"  onChange={(e)=>previewImage(e)} />
    }
    />
    <div>
-       <img src={imageSrc||''} alt="" className=" w-full" />
+       <img srce={imageSrc||''} alt="" className=" w-full" />
    </div>
    <div className="text-red-500 font-semibold my-2">{errors.image?.message}</div>
    <div className=" flex justify-end p-3 gap-3 border-t-2">
