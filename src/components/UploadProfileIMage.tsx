@@ -40,7 +40,7 @@ function UploadProfileIMage({close}:{
 
         />
         <div className=' mb-3'>
-            <img src={imageSrc||''} alt="" className=" w-full" />
+            <img src={imageSrc||''} alt="" className=" w-[300px] h-[300px]" />
         </div>
 
 <div className=' flex justify-end gap-3'>

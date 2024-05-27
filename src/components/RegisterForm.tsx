@@ -31,13 +31,14 @@ function RegisterForm() {
 
   return (
     <div>
-      <div className=" flex ">
-        <div className="">
-          <QuestionAnswerSharpIcon />
+      <div className=" flex justify-center items-center h-screen bg-gray-300 ">
+        <div className=" flex h-1/2 w-1/2 bg-white">
+        <div className=" w-1/2 flex justify-center items-center text-5xl  bg-blue-400">
+        <QuestionAnswerSharpIcon style={{fontSize:'100px'}}/>
         </div>
-        <div>
-          <h3>Register</h3>
-          <form onSubmit={handleSubmit(onSubmit)}>
+        <div className=" p-5 w-1/2 ">
+          <h3 className=" text-3xl font-semibold mb-5"> Register</h3>
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full">
             <Controller
               name="username"
               control={control}
@@ -47,10 +48,7 @@ function RegisterForm() {
                   value: 3,
                   message: "Username must be at least 3 characters",
                 },
-                maxLength: {
-                  value: 10,
-                  message: "Username must be less than 10 characters",
-                },
+       
                 pattern: {
                   value: /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/,
                   message: "Username is invalid",
@@ -59,8 +57,7 @@ function RegisterForm() {
               render={({ field: { onChange, value } }) => (
                 <InputBox
                   value={value}
-                  classname={"p-3 rounded "}
-                  label={""}
+                  classname=" outline-none border-2 w-full p-3 rounded"                  label={""}
                   placeholder={"Username"}
                   type={"text"}
                   error={errors.username?.message}
@@ -81,8 +78,7 @@ function RegisterForm() {
               render={({ field: { onChange, value } }) => (
                 <InputBox
                   value={value}
-                  classname={"p-3 rounded "}
-                  label={""}
+                  classname=" outline-none border-2 w-full p-3 rounded"                  label={""}
                   placeholder={"Email"}
                   type={"text"}
                   error={errors.email?.message}
@@ -100,10 +96,7 @@ function RegisterForm() {
                   value: 8,
                   message: "Password must be at least 8 characters",
                 },
-                maxLength: {
-                  value: 20,
-                  message: "Password must be less than 20 characters",
-                },
+        
                 pattern: {
                   value:
                     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/,
@@ -113,8 +106,7 @@ function RegisterForm() {
               render={({ field: { onChange, value } }) => (
                 <InputBox
                   value={value}
-                  classname={"p-3 rounded "}
-                  label={""}
+                  classname="  outline-none border-2 w-full p-3 rounded"                     label={""}
                   placeholder={"Password"}
                   type={"text"}
                   error={errors.password?.message}
@@ -129,25 +121,21 @@ function RegisterForm() {
                 required: { value: true, message: "Password is required" },
                 minLength: {
                   value: 8,
-                  message: "Password must be at least 8 characters",
+                  message: " Confirm Password must be at least 8 characters",
                 },
-                maxLength: {
-                  value: 20,
-                  message: "Password must be less than 20 characters",
-                },
+               
                 pattern: {
                   value:
                     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/,
-                  message: "Password is invalid",
+                  message: "Confirm Password is invalid",
                 },
                 validate: (value) =>
-                  value === watch("password") || "The passwords do not match",
+                  value === watch("password") || "The Confirm passwords do not match",
               }}
               render={({ field: { onChange, value } }) => (
                 <InputBox
                   value={value}
-                  classname={"p-3 rounded "}
-                  label={""}
+                  classname=" outline-none border-2 w-full p-3 rounded"                     label={""}
                   placeholder={"Confirm Password"}
                   type={"text"}
                   error={errors.confirmPassword?.message}
@@ -158,10 +146,10 @@ function RegisterForm() {
 
             <Button
               Name={"Register"}
-              classname=" p-2 bg-blue-400"
-              types="submit"
+              classname=" w-1/2 rounded  mx-auto me-0 block  p-2 bg-blue-400"              types="submit"
             />
           </form>
+        </div>
         </div>
       </div>
     </div>
