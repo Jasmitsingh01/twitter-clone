@@ -1,30 +1,82 @@
-# React + TypeScript + Vite
+# Tweeter Clone Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the frontend repository for our Tweeter clone! This repository contains the codebase for the user interface of our Tweeter clone application. With this frontend, users can interact with the backend services to create, read, update, and delete messages, follow other users, and engage in real-time messaging similar to Twitter.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Authentication**: User authentication system with support for sign up, login, and account management.
+- **Timeline Feed**: Display of messages from followed users in a timeline feed, with options to like, retweet, and reply.
+- **Real-time Messaging**: Implementation of real-time messaging for instant communication between users.
+- **User Profiles**: Display of user profiles with information such as bio, follower count, and following count.
+- **Search Functionality**: Ability to search for messages, users, or hashtags within the application.
+- **Notifications**: Notification system to alert users about new messages, mentions, or followers.
+- **Responsive Design**: Responsive layout to ensure compatibility and usability across various devices and screen sizes.
 
-## Expanding the ESLint configuration
+## Setup Instructions
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository to your local machine:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+git clone https://github.com/your/repository.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Install dependencies using your preferred package manager:
+
+```
+npm install
+```
+or
+```
+yarn install
+```
+
+3. Configure environment variables such as API endpoints, authentication tokens, and other configuration parameters. You can use a `.env` file for local development.
+
+4. Run the frontend application:
+
+```
+npm start
+```
+or
+```
+yarn start
+```
+
+5. The frontend application should now be running and accessible at the specified port. You can integrate the frontend with the backend services to enable full functionality.
+
+## Technologies Used
+
+- **React**: JavaScript library for building user interfaces.
+- **Redux**: State management library for managing application state.
+- **React Router**: Library for handling routing within a React application.
+- **Axios**: Promise-based HTTP client for making API requests.
+- **Styled Components**: Library for styling React components with CSS.
+- **WebSocket**: Protocol for real-time communication between client and server.
+
+## Folder Structure
+
+```
+├── src/
+│   ├── components/         # Reusable components
+│   ├── containers/         # Components connected to Redux store
+│   ├── pages/              # Top-level pages of the application
+│   ├── redux/              # Redux store configuration and actions
+│   ├── services/           # Services for API communication
+│   ├── utils/              # Utility functions
+│   ├── styles/             # Global styles and styled-components theme
+│   └── App.js              # Main component rendering the application
+├── public/                  # Static assets and index.html
+└── README.md                # Instructions and information about the frontend
+```
+
+## Contributors
+
+-Jasmit Singh
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For any issues or questions, please open an issue on GitHub or contact the project maintainers. Contributions are welcome through pull requests.
