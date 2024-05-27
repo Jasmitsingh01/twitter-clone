@@ -2,7 +2,8 @@ import InputBox from "../ui/inputBox";
 import Button from "../ui/button";
 import QuestionAnswerSharpIcon from "@mui/icons-material/QuestionAnswerSharp";
 import { useForm, Controller } from "react-hook-form";
-
+import { Link } from "react-router-dom";
+import { register } from "../services/auth";
 interface registerData {
   username: string;
   email: string;
@@ -27,6 +28,7 @@ function RegisterForm() {
   const onSubmit = (data: registerData) => {
     delete data?.confirmPassword;
     console.log(data);
+    register(data)
   };
 
   return (
@@ -108,7 +110,7 @@ function RegisterForm() {
                   value={value}
                   classname="  outline-none border-2 w-full p-3 rounded"                     label={""}
                   placeholder={"Password"}
-                  type={"text"}
+                  type={"password"}
                   error={errors.password?.message}
                   onChange={onChange}
                 />
@@ -137,7 +139,7 @@ function RegisterForm() {
                   value={value}
                   classname=" outline-none border-2 w-full p-3 rounded"                     label={""}
                   placeholder={"Confirm Password"}
-                  type={"text"}
+                  type={"password"}
                   error={errors.confirmPassword?.message}
                   onChange={onChange}
                 />
@@ -149,6 +151,8 @@ function RegisterForm() {
               classname=" w-1/2 rounded  mx-auto me-0 block  p-2 bg-blue-400"              types="submit"
             />
           </form>
+          <p className=" my-5">Already have a  account <Link to={'/login'} className=" text-blue-400">login !!</Link> </p>
+
         </div>
         </div>
       </div>

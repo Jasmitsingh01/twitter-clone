@@ -2,6 +2,8 @@ import InputBox from "../ui/inputBox"
 import Button from "../ui/button"
 import QuestionAnswerSharpIcon from '@mui/icons-material/QuestionAnswerSharp';
 import { useForm ,Controller} from "react-hook-form";
+import { login } from "../services/auth";
+import { Link } from "react-router-dom";
 export default function Login() {
 
   const { handleSubmit , control , formState:{errors} }=useForm({
@@ -14,7 +16,8 @@ const onSubmit=(data:{
   username:string,
   password:string
 })=>{
-console.log(data)
+  console.log(data)
+  login(data)
 }
   return (
     <div className=" flex justify-center items-center h-screen bg-gray-300 ">
@@ -64,6 +67,7 @@ console.log(data)
             } />
             <Button Name={'login'} types="submit" classname=" w-1/2 rounded  mx-auto me-0 block  p-2 bg-blue-400" />
           </form>
+        <p className=" my-10">create a new account <Link to={'/signin'} className=" text-blue-400">signin !!</Link> </p>
         </div>
       </div>
     </div>

@@ -2,24 +2,25 @@ import instance from ".";
 
 import { toast } from "react-toastify";
 interface login{
-    email:string;
+    username:string;
     password:string;
 }
 
 interface register{
-    name:string;
     email:string;
     password:string;
-    usenames:string
+    username:string;
+  confirmPassword?:string;
 }
 
 export const login =async(data:login)=>{
    try {
-     const logins= await instance.post('/login',data);
+     const logins= await instance.post('auth/login',data);
      if(logins.status ==200){
         localStorage.setItem('token_access',logins.data.accessToken)
         toast.success('login success')
         window.location.href='/'
+        alert('sss')
      }
     
    } catch (error:any) {
@@ -33,10 +34,11 @@ export const login =async(data:login)=>{
 
 export const register =async(data:register)=>{
     try {
-      const register= await instance.post('/register',data);
-      if(register.status ==200){
+      const register= await instance.post('auth/register',data);
+      if(register.status ==201){
+        localStorage.setItem('  token_access',register.data.accessToken)
          toast.success('register success')
-         window.location.href='/'
+         setTimeout(()=>         window.location.href='/',3000        )
       }
      
     } catch (error:any) {
