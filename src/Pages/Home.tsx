@@ -3,7 +3,10 @@ import Button from "../ui/button";
 import Tweet from "../components/Tweet";
 import { Modal } from "@mui/material";
 import CreateTweet from "../components/CreateTweet";
+import { useNavigate } from "react-router-dom";
+import authencation from '../utils/authentication'
 function Home() {
+  const Navigate=useNavigate();
   const [IsOpen,setIsOpen]=useState(false)
   const Array=[1,2,3,4,5,6,7,8,9,10,11];
   return (
@@ -15,7 +18,8 @@ function Home() {
       </Modal>
       <div className="w-full flex items-center justify-between  mb-3">
         <h3 className=" font-semibold text-2xl">Home</h3>
-        <Button classname={"bg-blue-500 font-semibold text-white rounded  p-x-5 py-3 w-36"} onClick={()=>setIsOpen(true)} Name="Tweet"/>
+        <Button classname={"bg-blue-500 font-semibold text-white rounded  p-x-5 py-3 w-36"} onClick={()=>
+          authencation()?setIsOpen(true):Navigate('/login')} Name="Tweet"/>
       </div>
       <div>
        {

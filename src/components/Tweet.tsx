@@ -5,8 +5,11 @@ import { useState } from 'react';
 import { Modal } from '@mui/material';
 import Reply from './Reply';
 import DeleteIcon from '@mui/icons-material/Delete';
+import authencation from '../utils/authentication';
+import { useNavigate } from 'react-router-dom';
 
 function Tweet() {
+  const Navigate=useNavigate()
   const [ Isopen,setIsOpen ]=useState(false)
   
   return (
@@ -30,13 +33,13 @@ function Tweet() {
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate a magnam, nam pariatur iusto dolorum! Inventore, deserunt tenetur! Vero, tenetur.
     </p>
     <div className=' w-1/2 flex justify-between mb-3'>
-      <button >
+      <button onClick={()=>authencation()?'do something You want to Do':Navigate('/login')} >
         <FavoriteIcon style={{color:'red'}}/>
         </button>
-      <button>
+      <button onClick={()=>authencation()?'do something You want to Do':Navigate('/login')}>
         <ChatIcon style={{color:"blue"}}/>
       </button>
-      <button onClick={()=>{setIsOpen(!Isopen)}}>
+      <button onClick={()=>authencation()?setIsOpen(!Isopen):Navigate('/login')}>
         <ReplyIcon/>
       </button>
     </div>
