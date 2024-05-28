@@ -44,7 +44,7 @@ export const register =async(data:register)=>{
       const register= await instance.post('auth/register',data);
       if(register.status ==201){
         console.log(register)
-        localStorage.setItem('  token_access',register.data?.data?.accessToken)
+        localStorage.setItem('token_access',register.data?.data?.accessToken)
         localStorage.setItem('token_refresh',register.data?.data?.accessToken)
          toast.success('register success')
          setTimeout(()=>         window.location.href='/',3000        )

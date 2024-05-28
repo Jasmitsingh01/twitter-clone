@@ -2,10 +2,8 @@ import { useForm ,Controller} from "react-hook-form"
 import InputBox from "../ui/inputBox"
 import Button from "../ui/button"
 import { useState } from "react";
-interface Data{
-  content:string ;
-  image:File | Object;
-}
+import { createTweet } from "../services/tweet";
+
 function CreateTweet({close}:{
   close: () => void,
 }) {
@@ -15,8 +13,12 @@ function CreateTweet({close}:{
       content:'',
       image :{}    }
   });
-  const onSubmit=(data:Data)=>{
-    console.log(data)
+  const onSubmit=(data:any)=>{
+    const formData=new FormData()
+    formData.append('content',data?.content)
+    formData.append('image',data?.image[0])
+    createTweet(formData).then(()=> close())
+   
   }
   const previewImage=(file:any)=>{
 

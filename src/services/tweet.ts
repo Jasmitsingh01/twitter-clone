@@ -4,18 +4,15 @@ import instance from ".";
 
 
 import { toast } from "react-toastify";
+import instancefile from "./file";
 
 
 
-interface tweet{
-      content:string ;
-}
-
-export const createTweet =async(data:tweet)=>{
+export const createTweet =async(data:any)=>{
     try {
-      const tweet= await instance.post('/tweet',data);
-      if(tweet.status ==200){
-         toast.success('tweet success')
+      const tweet= await instancefile.post('/',data);
+      if(tweet.status ==201){
+         toast.success('tweet successfully created')
       }
      
     } catch (error:any) {
@@ -25,9 +22,10 @@ export const createTweet =async(data:tweet)=>{
 
  export const getTweet =async()=>{
     try {
-      const tweet= await instance.get('/tweet');
+      const tweet= await instance.get('/');
       if(tweet.status ==200){
          toast.success('tweet success')
+         return tweet.data?.data
       }
      
     } catch (error:any) {
@@ -47,22 +45,11 @@ export const createTweet =async(data:tweet)=>{
  }
 
 
- export const updateTweet =async(id:string,data:tweet)=>{
-    try {
-      const tweet= await instance.put(`/tweet/${id}`,data);
-      if(tweet.status ==200){
-         toast.success('tweet success')
-      }
-     
-    } catch (error:any) {
-     toast.error(error)
-    } 
- }
  export const likeTweet =async(id:string)=>{
     try {
-      const tweet= await instance.put(`/tweet/${id}`);
+      const tweet= await instance.put(`/${id}/like`);
       if(tweet.status ==200){
-         toast.success('tweet success')
+         toast.success('tweet success like')
       }
      
     } catch (error:any) {
@@ -72,18 +59,18 @@ export const createTweet =async(data:tweet)=>{
 
  export const unlikeTweet =async(id:string)=>{
     try {
-      const tweet= await instance.delete(`/tweet/${id}`);
+      const tweet= await instance.put(`/${id}/unlike`);
       if(tweet.status ==200){
-         toast.success('tweet success')
+         toast.success('tweet successfully unlinked')
       }
      
     } catch (error:any) {
      toast.error(error)
     } 
  }
- export const retweetTweet =async(id:string)=>{
+ export const retweetTweet =async(id:string,tweets:{content:string})=>{
     try {
-      const tweet= await instance.put(`/tweet/${id}`);
+      const tweet= await instance.post(`/${id}/reply`,tweets);
       if(tweet.status ==200){
          toast.success('tweet success')
       }

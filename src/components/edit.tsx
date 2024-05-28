@@ -1,17 +1,20 @@
 import { useForm,Controller } from "react-hook-form";
 import Button from '../ui/button';
 import InputBox from "../ui/inputBox";
+import { updateDetail } from "../services/user";
 function Edit({close}:{
     close: () => void,
 }) {
-    const {handleSubmit,register,control,formState:{errors}}=useForm({
+    const {handleSubmit,control,formState:{errors}}=useForm({
         defaultValues:{
             name:'',
             location:'',
             Dob:''
         }
     });
-const onsubmit=()=>{
+const onsubmit=(data:any)=>{
+  updateDetail(data)
+
 
 }
   return (

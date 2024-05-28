@@ -25,7 +25,7 @@ export const uploadImage =async(data:any)=>{
 
  export const updateDetail =async(data:updateDetails)=>{
     try {
-      const details= await instance.put('/details',data);
+      const details= await instance.put('auth/:id',data);
       if(details.status ==200){
          toast.success('details success')
       }
@@ -38,7 +38,7 @@ export const uploadImage =async(data:any)=>{
 
  export const getUserDetails =async()=>{
     try {
-      const details= await instance.get('/auth/${s}');
+      const details= await instance.get('/auth/:id');
       if(details.status ==200){
          toast.success('details success')
          return details.data?.data

@@ -1,14 +1,22 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Button from "../ui/button";
 import Tweet from "../components/Tweet";
 import { Modal } from "@mui/material";
 import CreateTweet from "../components/CreateTweet";
 import { useNavigate } from "react-router-dom";
 import authencation from '../utils/authentication'
+import { getTweet } from "../services/tweet";
 function Home() {
   const Navigate=useNavigate();
   const [IsOpen,setIsOpen]=useState(false)
-  const Array=[1,2,3,4,5,6,7,8,9,10,11];
+   const [data,setdata]=useState([])
+  useEffect(()=>{
+    getTweet().then((tweet)=>{
+      setdata(tweet)
+      
+    })
+  },[])
+  
   return (
     <div className=" p-3 ">
       <Modal open={IsOpen}>
@@ -23,10 +31,13 @@ function Home() {
       </div>
       <div>
        {
-        Array?.map((_,index)=>
-          <Tweet key={index}/>
-        )
-       }
+        data?.map((tweet,index)=>{
+        const {TweetBy,content,likeby,reply,image,_id}=tweet||{}
+        console.log(tweet)
+         return( <Tweet key={index} TweetBy={TweetBy} content={content} likeby={likeby} reply={reply} image={image} ids={_id}/>)
+        
+       })
+      }
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
+import { retweetTweet } from "../services/tweet";
 import Button from "../ui/button";
 import { useForm, Controller } from "react-hook-form";
-function Reply({ close }: { close: () => void }) {
+function Reply({ close ,id}: { close: () => void ,id:string;}) {
   const {
     handleSubmit,
     control,
@@ -11,7 +12,8 @@ function Reply({ close }: { close: () => void }) {
     },
   });
   const onSubmit = (data: { content: string }) => {
-    console.log(data);
+    console.log(id)
+    retweetTweet(id,data)
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className=" w-1/2  px-4  bg-white">

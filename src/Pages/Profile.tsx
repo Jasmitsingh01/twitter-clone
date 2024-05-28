@@ -19,6 +19,7 @@ interface userData{
   Dob?:string;
   followers?:Array<string|undefined>
   following?:Array<string|undefined>
+  createdAt:string;
 }
 function Profile() {
  const [uploadImage,setuploadImage] =useState<Boolean>(false);
@@ -48,8 +49,7 @@ if(!edit){
   );
 }
 },[edit])
-const {username,avatar,location,Dob,followers,following,name}=user||{};
-console.log(avatar)
+const {username,avatar,location,Dob,followers,following,name,createdAt}=user||{};
   return (
     <>
     <Modal open={uploadImage}>
@@ -84,10 +84,10 @@ console.log(avatar)
 
         </div>
         <div className=" flex gap-5 mb-4">
-          <p className=" flex items-center gap-2"><span><CalendarTodayIcon/></span>Dob -{Dob}</p>
+          <p className=" flex items-center gap-2"><span><CalendarTodayIcon/></span>Dob -{Dob?.split('T')[0]}</p>
           <p className=" flex items-center gap-2"><span><LocationOnIcon/></span>Location -{location}</p>
         </div>
-       <p className="flex items-center gap-2  mb-3"><span><WorkIcon/></span>Joined Date</p>
+       <p className="flex items-center gap-2  mb-3"><span><WorkIcon/></span>Joined Date -{createdAt?.split('T')[0]} </p>
        <div className=" flex gap-3 font-semibold">
          <p>{following?.length} following</p>
          <p>{followers?.length} followers</p>
