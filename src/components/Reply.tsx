@@ -1,7 +1,7 @@
 import { retweetTweet } from "../services/tweet";
 import Button from "../ui/button";
 import { useForm, Controller } from "react-hook-form";
-function Reply({ close ,id}: { close: () => void ,id:string;}) {
+function Reply({ close ,id,render}: { close: () => void ,id:string,render: () => void}) {
   const {
     handleSubmit,
     control,
@@ -13,7 +13,7 @@ function Reply({ close ,id}: { close: () => void ,id:string;}) {
   });
   const onSubmit = (data: { content: string }) => {
     console.log(id)
-    retweetTweet(id,data)
+    retweetTweet(id,data).then(()=>{render();close()})
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className=" w-1/2  px-4  bg-white">

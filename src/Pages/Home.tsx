@@ -10,12 +10,13 @@ function Home() {
   const Navigate=useNavigate();
   const [IsOpen,setIsOpen]=useState(false)
    const [data,setdata]=useState([])
+   const [render,setRender] = useState(false);
   useEffect(()=>{
     getTweet().then((tweet)=>{
       setdata(tweet)
       
     })
-  },[])
+  },[render])
   
   return (
     <div className=" p-3 ">
@@ -34,7 +35,7 @@ function Home() {
         data?.map((tweet,index)=>{
         const {TweetBy,content,likeby,reply,image,_id}=tweet||{}
         console.log(tweet)
-         return( <Tweet key={index} TweetBy={TweetBy} content={content} likeby={likeby} reply={reply} image={image} ids={_id}/>)
+         return( <Tweet key={index} TweetBy={TweetBy} content={content} likeby={likeby} reply={reply} image={image} ids={_id} render={()=>setRender}/>)
         
        })
       }

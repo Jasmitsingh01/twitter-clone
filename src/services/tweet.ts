@@ -34,7 +34,7 @@ export const createTweet =async(data:any)=>{
  }
  export const deleteTweet =async(id:string)=>{
     try {
-      const tweet= await instance.delete(`/tweet/${id}`);
+      const tweet= await instance.delete(`/${id}/delete`);
       if(tweet.status ==200){
          toast.success('tweet success')
       }
@@ -57,17 +57,7 @@ export const createTweet =async(data:any)=>{
     } 
  }
 
- export const unlikeTweet =async(id:string)=>{
-    try {
-      const tweet= await instance.put(`/${id}/unlike`);
-      if(tweet.status ==200){
-         toast.success('tweet successfully unlinked')
-      }
-     
-    } catch (error:any) {
-     toast.error(error)
-    } 
- }
+
  export const retweetTweet =async(id:string,tweets:{content:string})=>{
     try {
       const tweet= await instance.post(`/${id}/reply`,tweets);

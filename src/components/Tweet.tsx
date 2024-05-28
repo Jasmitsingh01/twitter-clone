@@ -7,7 +7,7 @@ import Reply from './Reply';
 import DeleteIcon from '@mui/icons-material/Delete';
 import authencation from '../utils/authentication';
 import { useNavigate } from 'react-router-dom';
-import { likeTweet, unlikeTweet } from '../services/tweet';
+import { deleteTweet, likeTweet } from '../services/tweet';
 interface tweet{
   TweetBy:{
     username:string;
@@ -19,23 +19,21 @@ interface tweet{
   reply:[object];
   image:string;
   ids:string
+  render:() => void;
 }
-function Tweet({TweetBy,content,likeby,reply,image,ids}:tweet) {
+function Tweet({TweetBy,content,likeby,reply,image,ids,render}:tweet) {
   const Navigate=useNavigate()
   const [ Isopen,setIsOpen ]=useState(false)
-  const [id,setid]=useState('')
   const [like,setlike]=useState(false)
   const Handledit=()=>{
-    setid(ids)
     setIsOpen(true)
   }
   const handleLikes=()=>{
     setlike(!like)
 
-    if(like){
-     likeTweet(ids)
-    }
-    unlikeTweet(ids)
+    
+     likeTweet(ids).then(()=>{render();close()})
+    
   }
   return (
 
@@ -43,7 +41,7 @@ function Tweet({TweetBy,content,likeby,reply,image,ids}:tweet) {
       <Modal open={Isopen} className=' mx-auto' >
         
         <div className='  p-3 flex justify-center '>
-          <Reply id={ids} close={()=>setIsOpen(false)}/>
+          <Reply id={ids} close={()=>setIsOpen(false)} render={render}/>
         </div>
       </Modal>
   <div>
@@ -80,7 +78,7 @@ function Tweet({TweetBy,content,likeby,reply,image,ids}:tweet) {
       </button>
     </div>
   </div>
-  <button className = " absolute top-0 right-4 " ><DeleteIcon/></button>
+  <button className = " absolute top-0 right-4 " onClick={()=>authencation()?deleteTweet(ids).then(()=>{render();close();}):null} ><DeleteIcon/></button>
     </div>
   )
 }
