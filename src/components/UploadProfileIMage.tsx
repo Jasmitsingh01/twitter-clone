@@ -3,8 +3,9 @@ import { useForm,Controller } from "react-hook-form";
 import Button from '../ui/button';
 import { uploadImage } from '../services/user';
 
-function UploadProfileIMage({close}:{
+function UploadProfileIMage({close,render}:{
     close: () => void,
+    render: () => void
   
 }) {
     const {handleSubmit,register,control}=useForm();
@@ -25,8 +26,7 @@ function UploadProfileIMage({close}:{
   const  onsubmit=(data:any)=>{
     const formData=new FormData();
     formData.append('image',data?.image[0])
-  uploadImage(formData)
-  close()
+  uploadImage(formData).then(()=>{render();close()})
   }
   return (
     <form onSubmit={handleSubmit(onsubmit)}> 

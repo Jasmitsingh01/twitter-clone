@@ -25,6 +25,7 @@ function Profile() {
  const [uploadImage,setuploadImage] =useState<Boolean>(false);
  const [edit,setedit] =useState<Boolean>(false);
  const [user,setuser]= useState <userData>();
+ const [render,setrender] = useState(false)
  const Navigate=useNavigate()
 useEffect(() =>{
     if(!authencation()){
@@ -39,23 +40,15 @@ useEffect(() =>{
      }
     
   
-},[uploadImage])
-useEffect(()=>{
-if(!edit){
-  getUserDetails().then((user) =>{
-    setuser(user)
-  }).catch((error) =>
-    console.log(error)
-  );
-}
-},[edit])
+},[render])
+
 const {username,avatar,location,Dob,followers,following,name,createdAt}=user||{};
   return (
     <>
     <Modal open={uploadImage}>
      <div className=" w-1/2 px-5 mx-auto bg-white">
       <h3>Upload Profile Image</h3>
-      <UploadProfileIMage close={()=>setuploadImage(false)}/>
+      <UploadProfileIMage render={()=>setrender(!render)} close={()=>setuploadImage(false)}/>
      </div>
 
     </Modal>
@@ -65,7 +58,7 @@ const {username,avatar,location,Dob,followers,following,name,createdAt}=user||{}
       <h3 className="  text-xl font-semibold">Edit Profile</h3>
        <Button classname="p-2 bg-gray-300" onClick={()=>setedit(false)} Name="x" />
      </div>
-     <Edit close={()=>setedit(false)}/>
+     <Edit render={()=>setrender(!render)} close={()=>setedit(false)}/>
    </div>
     </Modal>
     <div className=" p-3">

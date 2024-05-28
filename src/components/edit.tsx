@@ -2,8 +2,9 @@ import { useForm,Controller } from "react-hook-form";
 import Button from '../ui/button';
 import InputBox from "../ui/inputBox";
 import { updateDetail } from "../services/user";
-function Edit({close}:{
+function Edit({close,render}:{
     close: () => void,
+    render: () => void
 }) {
     const {handleSubmit,control,formState:{errors}}=useForm({
         defaultValues:{
@@ -13,7 +14,7 @@ function Edit({close}:{
         }
     });
 const onsubmit=(data:any)=>{
-  updateDetail(data)
+  updateDetail(data).then(()=>{render();close()})
 
 
 }

@@ -22,7 +22,7 @@ function Home() {
     <div className=" p-3 ">
       <Modal open={IsOpen}>
         <div className='  p-3 flex justify-center '>
-          <CreateTweet close={()=>setIsOpen(false)}/>
+          <CreateTweet render={()=>setRender(!render)} close={()=>setIsOpen(false)}/>
         </div>
       </Modal>
       <div className="w-full flex items-center justify-between  mb-3">
@@ -35,7 +35,7 @@ function Home() {
         data?.map((tweet,index)=>{
         const {TweetBy,content,likeby,reply,image,_id}=tweet||{}
         console.log(tweet)
-         return( <Tweet key={index} TweetBy={TweetBy} content={content} likeby={likeby} reply={reply} image={image} ids={_id} render={()=>setRender}/>)
+         return( <Tweet key={index} TweetBy={TweetBy} content={content} likeby={likeby} reply={reply} image={image} ids={_id} render={()=>setRender(!render)}/>)
         
        })
       }

@@ -4,8 +4,9 @@ import Button from "../ui/button"
 import { useState } from "react";
 import { createTweet } from "../services/tweet";
 
-function CreateTweet({close}:{
+function CreateTweet({close,render}:{
   close: () => void,
+  render: () => void
 }) {
   const [imageSrc, setImageSrc] = useState<string | ArrayBuffer | DOMException >('');
   const { handleSubmit , control ,formState:{errors},register}=useForm({
@@ -17,7 +18,7 @@ function CreateTweet({close}:{
     const formData=new FormData()
     formData.append('content',data?.content)
     formData.append('image',data?.image[0])
-    createTweet(formData).then(()=> close())
+    createTweet(formData).then(()=> {close();render()})
    
   }
   const previewImage=(file:any)=>{
