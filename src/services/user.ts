@@ -36,9 +36,9 @@ export const uploadImage =async(data:any)=>{
  }
 
 
- export const getUserDetails =async()=>{
+ export const getUserDetails =async(id:string)=>{
     try {
-      const details= await instance.get('/auth/:id');
+      const details= await instance.get(`/auth${id!=''?'/:id?id='+id:'/:id'}`);
       if(details.status ==200){
          toast.success('details success')
          return details.data?.data

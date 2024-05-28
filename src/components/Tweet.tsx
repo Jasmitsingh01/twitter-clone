@@ -6,13 +6,14 @@ import { Modal } from '@mui/material';
 import Reply from './Reply';
 import DeleteIcon from '@mui/icons-material/Delete';
 import authencation from '../utils/authentication';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { deleteTweet, likeTweet } from '../services/tweet';
 interface tweet{
   TweetBy:{
     username:string;
     avatar:string;
     name:string;
+    _id:string
   };
   content:string;
   likeby:[object];
@@ -50,7 +51,7 @@ function Tweet({TweetBy,content,likeby,reply,image,ids,render}:tweet) {
     <img src={TweetBy?.avatar} alt="/" className=" w-[50px] h-[50px] object-cover rounded-full"/>
 
           <div className=''>
-           <p> <span>{TweetBy?.name}</span> </p>
+          <Link to={`/profile/${TweetBy._id}`}> <p> <span>{TweetBy?.name}</span> </p></Link>
            <p>Thu Dec 22 2022</p>
           </div>
          

@@ -41,16 +41,14 @@ useEffect(() =>{
     alltweetsbyUser(id).then((tweets)=>{
       setuserTweets(tweets)
     });
-     if(!uploadImage){
-      getUserDetails().then((user) =>{
+      getUserDetails(id).then((user) =>{
         setuser(user)
       }).catch((error) =>
         console.log(error)
       );
-     }
     
   
-},[render])
+},[render,url.pathname])
 
 const {username,avatar,location,Dob,followers,following,name,createdAt}=user||{};
   return (

@@ -26,6 +26,8 @@ export const login =async(data:login)=>{
      if(logins.status ==200){
       localStorage.setItem('token_access',logins.data?.data?.accessToken);
       localStorage.setItem('token_refresh',logins.data?.data?.accessToken);
+      const obj=JSON.stringify({username:logins.data?.data?.username,name:logins.data?.data?.name,avatar:logins.data?.data?.avatar})
+      localStorage.setItem('details',obj)
       toast.success('login success')
       setTimeout(()=>         window.location.href='/',3000        )
      }
@@ -46,6 +48,8 @@ export const register =async(data:register)=>{
         console.log(register)
         localStorage.setItem('token_access',register.data?.data?.accessToken)
         localStorage.setItem('token_refresh',register.data?.data?.accessToken)
+        const obj=JSON.stringify({username:register.data?.data?.username,name:register.data?.data?.name,avatar:register.data?.data?.avatar})
+      localStorage.setItem('details',obj)
          toast.success('register success')
          setTimeout(()=>         window.location.href='/',3000        )
       }

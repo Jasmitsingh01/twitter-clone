@@ -4,7 +4,13 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import { logout } from "../services/auth";
+import { useEffect, useState } from "react";
 function SideBar() {
+  const [user,setuser]=useState({username:'',name:'',avatar:''})
+  useEffect(()=>{
+   const Details=JSON.parse(localStorage.getItem('details'))
+   setuser(Details)
+  })
   return (
     <div className=" w-fit flex flex-col justify-between h-screen border-e-2 px-4 border-b-2  ">
       <div>
@@ -33,17 +39,20 @@ function SideBar() {
           </button>
         </div>
       </div>
-      <div className=" flex gap-4">
-        <img
-          src="/download.jpeg"
-          alt="profile-img"
-          className=" w-[50px] h-[50px] rounded-full  "
-        />
-        <div>
-          <p>Name</p>
-          <p>@username</p>
-        </div>
-      </div>
+   {
+    user?
+    <div className=" flex gap-4">
+    <img
+      src="/download.jpeg"
+      alt="profile-img"
+      className=" w-[50px] h-[50px] rounded-full  "
+    />
+    <div>
+      <p>{user.name}</p>
+      <p>{user.username?'@'+user.username:''}</p>
+    </div>
+  </div>:''
+   }
     </div>
   );
 }

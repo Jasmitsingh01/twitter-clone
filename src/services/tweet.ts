@@ -72,7 +72,7 @@ export const createTweet =async(data:any)=>{
 
  export const alltweetsbyUser = async(id:string)=>{
 try {
-   const tweet = await instance.get(`/tweet?${id!=''?`?id=${id}`:''}`)
+   const tweet = await instance.get(`/tweet${id!=''?`?id=${id}`:''}`)
    if(tweet.status ==200){
       toast.success('tweet success')
       return tweet.data?.data
