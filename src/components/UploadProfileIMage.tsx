@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import { useForm,Controller } from "react-hook-form";
 import Button from '../ui/button';
+import { uploadImage } from '../services/user';
 
 function UploadProfileIMage({close}:{
     close: () => void,
@@ -21,9 +22,12 @@ function UploadProfileIMage({close}:{
         setImageSrc(reader.error)
       }
     }
-  const  onsubmit=()=>{
-
-    }
+  const  onsubmit=(data:any)=>{
+    const formData=new FormData();
+    formData.append('image',data?.image[0])
+  uploadImage(formData)
+  close()
+  }
   return (
     <form onSubmit={handleSubmit(onsubmit)}> 
         <Controller

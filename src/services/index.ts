@@ -6,9 +6,12 @@
   headers: {
     "Content-Type": "application/json",
     Authorization: `bearer ${localStorage.getItem('token_access')}`,
+    "Access-Control-Allow-Origin": "*",
+    
        
 
   },
+  withCredentials: true,
 });
 
 export default instance;

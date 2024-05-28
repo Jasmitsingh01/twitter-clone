@@ -9,7 +9,7 @@ interface Data{
 function CreateTweet({close}:{
   close: () => void,
 }) {
-  const [imageSrc, setImageSrc] = useState<string | ArrayBuffer | DOMException |null>(null);
+  const [imageSrc, setImageSrc] = useState<string | ArrayBuffer | DOMException >('');
   const { handleSubmit , control ,formState:{errors},register}=useForm({
     defaultValues:{
       content:'',
@@ -24,10 +24,12 @@ function CreateTweet({close}:{
     const reader=new FileReader();
     reader.readAsDataURL(files);
     reader.onload=()=>{
-      setImageSrc(reader.result )
+      setImageSrc(reader.result||'')
+
     }
+    console.log(imageSrc)
     reader.onerror=()=>{
-      setImageSrc(reader.error)
+      setImageSrc(reader.error||'')
     }
    
   }
@@ -58,7 +60,7 @@ function CreateTweet({close}:{
    }
    />
    <div>
-       <img srce={imageSrc||''} alt="" className=" w-full" />
+       <img src={imageSrc} alt="" className="  w-[500px] h-[500px]" />
    </div>
    <div className="text-red-500 font-semibold my-2">{errors.image?.message}</div>
    <div className=" flex justify-end p-3 gap-3 border-t-2">

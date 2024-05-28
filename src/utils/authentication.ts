@@ -1,6 +1,5 @@
-import Cookies from "js-cookie";
  function authencation ():Boolean {
-    const token=Cookies.get('accessToken')
+    const token=localStorage.getItem('token_access')
     if(!token || token== undefined || token ==null || token == '' ){
         return false
     }else{

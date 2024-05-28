@@ -3,6 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
+import { logout } from "../services/auth";
 function SideBar() {
   return (
     <div className=" w-fit flex flex-col justify-between h-screen border-e-2 px-4 border-b-2  ">
@@ -24,7 +25,7 @@ function SideBar() {
             <span>Profile</span>
           </Link>
 
-          <button onClick={() => {}} className="flex w-full items-center gap-3  font-semibold hover:bg-blue-300 rounded p-3   text-lg ">
+          <button onClick={() => {logout()}} className="flex w-full items-center gap-3  font-semibold hover:bg-blue-300 rounded p-3   text-lg ">
             <span>
               <LogoutIcon />
             </span>
