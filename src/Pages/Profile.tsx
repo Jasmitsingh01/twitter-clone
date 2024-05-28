@@ -8,7 +8,9 @@ import UploadProfileIMage from "../components/UploadProfileIMage";
 import Edit from "../components/edit";
 import { getUserDetails } from "../services/user";
 import authencation from "../utils/authentication";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { alltweetsbyUser } from "../services/tweet";
+import Tweet from "../components/Tweet";
 
 interface userData{
   name: string
@@ -26,11 +28,19 @@ function Profile() {
  const [edit,setedit] =useState<Boolean>(false);
  const [user,setuser]= useState <userData>();
  const [render,setrender] = useState(false)
+ const [userTweets,setuserTweets] = useState([]);
+ const url =useLocation();
+ 
  const Navigate=useNavigate()
 useEffect(() =>{
     if(!authencation()){
    Navigate('/login')
     }
+    let id='';
+    url.pathname.split('/')[2]==':id'? '':id=url.pathname.split('/')[2]
+    alltweetsbyUser(id).then((tweets)=>{
+      setuserTweets(tweets)
+    });
      if(!uploadImage){
       getUserDetails().then((user) =>{
         setuser(user)
@@ -87,6 +97,15 @@ const {username,avatar,location,Dob,followers,following,name,createdAt}=user||{}
        </div>
        <div>
         <h3 className=" text-2xl font-semibold text-center">Tweets and Reply's</h3>
+        {
+            userTweets.map((tweet,index)=>{
+              const {TweetBy,content,likeby,reply,image,_id}=tweet||{}
+
+                return(
+                  <Tweet key={index} TweetBy={TweetBy} content={content} likeby={likeby} reply={reply} image={image} ids={_id} render={()=>{setrender(!render)}}/>
+                )
+            })
+        }
        </div>
     </div>
     </>

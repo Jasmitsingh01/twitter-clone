@@ -34,7 +34,6 @@ function Home() {
        {
         data?.map((tweet,index)=>{
         const {TweetBy,content,likeby,reply,image,_id}=tweet||{}
-        console.log(tweet)
          return( <Tweet key={index} TweetBy={TweetBy} content={content} likeby={likeby} reply={reply} image={image} ids={_id} render={()=>setRender(!render)}/>)
         
        })
